@@ -1,0 +1,29 @@
+<div>
+  <div class="header"> 
+    <app-header></app-header>
+  </div>
+
+  <div class="container">
+    <form (submit)="onSubmit($event)">
+    <div class="table-filters">
+        <div>
+          <app-input-search></app-input-search>
+        </div>
+        
+        <div>
+          <app-select-sort></app-select-sort>
+        </div>
+      </div>
+    </form>
+    
+    <div *ngIf="fetch.isStoreLoaded | async">
+      <app-feed-card></app-feed-card>
+      <app-table-view></app-table-view>
+      <div *ngIf="fetch.isCountAvaliable | async">
+        <app-pagination></app-pagination>
+      </div>
+    </div>
+
+  </div>
+  
+</div>

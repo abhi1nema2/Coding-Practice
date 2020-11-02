@@ -1,0 +1,20 @@
+{
+  "name": "Coding-Practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "server",
+    "feed-app"
+  ],
+  "repository": "https://github.com/abhi1nema2/Coding-Practice.git",
+  "license": "MIT",
+  "scripts": {
+    "app": "lerna run start --scope=feed-app",
+    "server": "lerna run start --scope=server",
+    "start": "lerna run start --stream"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}

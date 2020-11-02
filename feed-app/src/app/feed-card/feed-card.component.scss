@@ -1,0 +1,60 @@
+@import 'config';
+
+.cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+
+  @include screen-only('tablet') {
+    justify-content: space-around;
+  }
+}
+
+.card {
+  @include screen-only('desktop') {
+    width: 30%;
+  }
+
+  @include screen-only('tablet') {
+    width: 40%;
+  }
+
+  @include screen-only('mobile') {
+    width: 100%;
+  }
+
+  position: relative;
+  margin: 10px;
+  background: #fff;
+  padding-bottom: 30px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.card-image {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.title {
+  font-size: 18px;
+  padding: 10px;
+}
+
+.description {
+  padding: 10px;
+}
+
+.date {
+  padding: 10px;
+  position: absolute;
+  bottom: 5px;
+}

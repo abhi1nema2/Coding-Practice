@@ -1,0 +1,14 @@
+<div class="table">
+  <table>
+    <tr>
+      <th>{{'NAME' | uppercase }}</th>
+      <th>{{'description' | uppercase }}</th>
+      <th>{{'Date Last Edited' | uppercase }}</th>
+    </tr>
+    <tr *ngFor="let item of store">
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.dateLastEdited}}</td>
+    </tr>
+  </table>
+</div>

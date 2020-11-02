@@ -1,0 +1,6 @@
+<label>Sort By:</label>
+<select (change)="onChange($event)">
+  <option value="">Select</option>
+  <option value="name" [selected]="value === 'name' ? 'true' : null">Title</option>
+  <option value="description" [selected]="value === 'description' ? 'true' : null">DESCRIPTION</option>
+</select>

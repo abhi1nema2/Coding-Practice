@@ -1,0 +1,13 @@
+<div>
+  <hr />
+  
+  <p>
+    {{'TOTAL COUNT: '}}{{count}}
+  </p>
+  <div>
+    <button *ngFor="let item of pageButtons" (click)="onClick(item)" [ngClass]="{'active': item == fetch.getPage}">
+      {{item}}
+    </button>
+  </div>
+
+</div>

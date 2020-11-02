@@ -1,0 +1,16 @@
+<div class="cards">
+  <div class="card" *ngFor="let item of store">
+    <div class="card-image">
+      <img [src]="item.image" />
+    </div>
+    <div class="title">
+      {{item.name}}
+    </div>
+    <div class="description">
+      {{item.description}}
+    </div>
+    <div class="date">
+      {{item.dateLastEdited}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+// Breakpoints
+@use 'sass:map';
+
+$breakpoint: (
+  'mobile': 240px, // (320-767)
+  'tablet': 768px, // (768-1023)
+  'desktop': 1024px // (1024-above)
+);
+
+@mixin screen-up($screen) {
+  $device: map.get($breakpoint, $screen);
+
+  @if $screen=='mobile' {
+    @media screen and (min-width: $device) {
+      @content;
+    }
+  }
+
+  @if $screen=='tablet' {
+    @media screen and (min-width: $device) {
+      @content;
+    }
+  }
+
+  @if $screen=='desktop' {
+    @media screen and (min-width: $device) {
+      @content;
+    }
+  }
+}
+
+@mixin screen-down($screen) {
+  $device: map.get($breakpoint, $screen);
+
+  @if $screen=='mobile' {
+    @media screen and (max-width: map.get($breakpoint, 'tablet') - 1) {
+      @content;
+    }
+  }
+
+  @if $screen=='tablet' {
+    @media screen and (max-width: map.get($breakpoint, 'desktop') - 1) {
+      @content;
+    }
+  }
+
+  @if $screen=='desktop' {
+    @content;
+  }
+}
+
+@mixin screen-only($screen) {
+  $device: map.get($breakpoint, $screen);
+
+  @if $screen=='mobile' {
+    @media screen and (min-width: map.get($breakpoint, 'mobile')) and (max-width: map.get($breakpoint, 'tablet') - 1) {
+      @content;
+    }
+  }
+
+  @if $screen=='tablet' {
+    @media screen and (min-width: map.get($breakpoint, 'tablet')) and (max-width: map.get($breakpoint, 'desktop') - 1) {
+      @content;
+    }
+  }
+
+  @if $screen=='desktop' {
+    @media screen and (min-width: $device) {
+      @content;
+    }
+  }
+}
+
+@mixin screen-mini-desktop {
+  @media screen and (min-width: 1025px) and (max-width: 1368px) {
+    @content;
+  }
+}
+
+@mixin screen-tablet-landscape {
+  @media screen and (min-width: 1024px) and (max-width: 1024px) {
+    @content;
+  }
+}
