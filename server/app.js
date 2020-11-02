@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-require('./initialize')();
+const connection = require('./initialize')();
 
 const pageLimit = 6;
 
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/all", (req, result) => {
-    con.query("SELECT SQL_CALC_FOUND_ROWS * FROM feedtable", (err, res) => {
+    connection.query("SELECT SQL_CALC_FOUND_ROWS * FROM feedtable", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -36,7 +36,7 @@ app.get("/api/all", (req, result) => {
 app.get("/api/:page", (req, result) => {
     const page = req.params.page;
     console.log('XXXXXXXXXXXXXXXXXXXXX PAGE', page);
-    con.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
+    connection.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -59,7 +59,7 @@ app.get("/api/:page/:string", (req, result) => {
         }).join(' ');
     }
     const query = `SELECT SQL_CALC_FOUND_ROWS * FROM feedtable WHERE name LIKE "${stringValue}" LIMIT ${pageLimit} OFFSET ${page * pageLimit}`;
-    con.query(query, (err, res) => {
+    connection.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -74,7 +74,7 @@ app.get("/api/:page/:string", (req, result) => {
 app.get("/sort/:sortBy/api/:page", (req, result) => {
     const page = req.params.page;
     const sortByValue = req.params.sortBy;
-    con.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable ORDER BY ${sortByValue} ASC LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
+    connection.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable ORDER BY ${sortByValue} ASC LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -97,7 +97,7 @@ app.get("/sort/:sortBy/api/:page/:string", (req, result) => {
                 return `%${item}%`;
             }).join(' ');
         }
-        con.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable WHERE name LIKE "${stringValue}" ORDER BY ${sortByValue} ASC LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
+        connection.query(`SELECT SQL_CALC_FOUND_ROWS * FROM feedtable WHERE name LIKE "${stringValue}" ORDER BY ${sortByValue} ASC LIMIT ${pageLimit} OFFSET ${page * pageLimit}`, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -110,7 +110,7 @@ app.get("/sort/:sortBy/api/:page/:string", (req, result) => {
 });
 
 app.get("/api-count", (req, result) => {
-    con.query(`SELECT FOUND_ROWS()`, (err, res) => {
+    connection.query(`SELECT FOUND_ROWS()`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
