@@ -61,6 +61,7 @@ export class FetchService {
       this.store = data;
       this.lastCall = `/api/${page}/${stringValue}`;
       this.setLocalStorage();
+      this.acitvePage = page;
       this.storeLoaded = Promise.resolve(true);
       this.count = Promise.resolve(true);
     });
