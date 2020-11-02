@@ -12,7 +12,8 @@
   "scripts": {
     "app": "lerna run start --scope=feed-app",
     "server": "lerna run start --scope=server",
-    "start": "lerna run start --stream"
+    "start": "lerna run start --stream",
+    "test": "lerna run test --scope=feed-app --stream"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
