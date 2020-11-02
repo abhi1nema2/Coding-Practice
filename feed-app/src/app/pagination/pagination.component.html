@@ -1,8 +1,11 @@
-<div>
+<div *ngIf="count">
   <hr />
   
-  <p>
+  <p class="count">
     {{'TOTAL COUNT: '}}{{count}}
+  </p>
+  <p>
+    {{'PAGINATION'}}
   </p>
   <div>
     <button *ngFor="let item of pageButtons" (click)="onClick(item)" [ngClass]="{'active': item == fetch.getPage}">

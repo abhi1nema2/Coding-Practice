@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetch.getAllFeed();
+    if (typeof localStorage.getItem('url') === 'undefined') {
+      this.fetch.getAllFeed();
+    }
   }
 }

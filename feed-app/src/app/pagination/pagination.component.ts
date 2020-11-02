@@ -24,7 +24,7 @@ export class PaginationComponent implements OnInit {
 
     const storedValue = localStorage.getItem('activePage');
     if (storedValue) {
-      this.fetch.setPage = storedValue;
+      this.fetch.setPage = Number(storedValue);
     }
   }
 
